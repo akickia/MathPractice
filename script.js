@@ -14,7 +14,7 @@ let y;
 let randomAdd;
 let time = 30;
 let score = 0;
-let calcMethod = "Addition";
+let calcMethod = "addition";
 
 
 /*calcMethodSelect.value = localStorage.getItem("calcMethod") !== null
@@ -28,6 +28,8 @@ startBtn.addEventListener("click", function() {startTime()});
 let timeInterval
 
 function startTime() {
+  startBtn.disabled = true
+  addCalcToDOM()
   timeInterval = setInterval(countdown, 1000)
   countdown()
 }
@@ -40,6 +42,7 @@ function countdown(){
     gameOver();
   }
 }
+
 
 
 function addRandomNumber(){
