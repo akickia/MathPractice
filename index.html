@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <title>Matematik</title>
+</head>
+<body>
+  <div><h1>Träna matematik</h1></div>
+  <div class="select" id="select">
+    <form id="select-form">
+      <label for="calcMethod" class="calcMethod">Räknesätt:</label>
+      <select id="calcMethod">
+        <option value="addition">Addition</option>
+        <option value="subtraction">Subtraktion</option>
+        <option value="multiplication">Multiplikation</option>
+        <option value="division">Division</option>
+      </select>
+    </form>
+  </div>
+
+  <div class="container">
+    <h3>Addition</h3>
+    <button class="start" id="start">Start</button>
+    <div class="input-calc">
+      <p>Skriv in ditt svar</p>
+      <h1 id="calc"></h1>
+      <input type="number" id="number" autocomplete="off" placeholder="Skriv ditt svar här..."/>
+    </div>
+    <p class="time-container">Time left: <span id="time">30s</span></p>
+    <p class="score-container">Poäng: <span id="score">0</span></p>
+    <div id="end-game-container" class="end-game-container"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
