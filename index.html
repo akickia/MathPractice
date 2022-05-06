@@ -13,6 +13,7 @@
     <form id="select-form">
       <label for="calcMethod" class="calcMethod">Räknesätt:</label>
       <select id="calcMethod">
+        <option></option>
         <option value="addition">Addition</option>
         <option value="subtraction">Subtraktion</option>
         <option value="multiplication">Multiplikation</option>
@@ -22,7 +23,7 @@
   </div>
 
   <div class="container">
-    <h3>Addition</h3>
+    <h3 id="method"></h3>
     <button class="btn" id="start">Start</button>
     <div class="input-calc">
       <p>Skriv in ditt svar</p>
@@ -31,8 +32,9 @@
     </div>
     <p class="time-container">Time left: <span id="time">30s</span></p>
     <p class="score-container">Poäng: <span id="score">0</span></p>
-    <div id="end-game-container" class="end-game-container"></div>
+    
   </div>
+  <div id="end-game-container" class="end-game-container"></div>
   <script src="script.js"></script>
 </body>
 </html>
