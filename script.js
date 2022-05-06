@@ -43,9 +43,9 @@ number.addEventListener("input", (event) => {
     || 
     ((calcMethod === "subtraction") && ((parseFloat(insertedNumber)) === (x - y))) 
     || 
-    ((calcMethod === "multiplication") && ((insertedNumber) === (x * y))) 
+    ((calcMethod === "multiplication") && ((parseFloat(insertedNumber)) === (x * y))) 
     || 
-    ((calcMethod === "division") && ((insertedNumber) === ((x*y) / y)))
+    ((calcMethod === "division") && ((parseFloat(insertedNumber)) === ((x*y) / y)))
   ) {
     //Nytt tal
     addCalcToDOM();
