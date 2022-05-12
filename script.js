@@ -15,7 +15,7 @@ const method = document.getElementById("method")
 let x;
 let y;
 let randomAdd;
-let time = 20;
+let time = 30;
 let score = 0;
 let calcMethod = "";
 let timeInterval;
@@ -48,7 +48,7 @@ number.addEventListener("input", (event) => {
     ((calcMethod === "division") && ((parseFloat(insertedNumber)) === ((x*y) / y)))
   ) {
     //Nytt tal
-    addCalcToDOM(calcMethod);
+    addCalcToDOM();
     //Uppdatera poäng
     updateScore();
     //töm input
@@ -65,7 +65,7 @@ function startTime() {
   //startknapp blir disabled
   startBtn.disabled = true
   //lägg till tal
-  addCalcToDOM(calcMethod)
+  addCalcToDOM()
   //fokus på input
   number.focus();
   //bestämmer nedräkning
@@ -88,7 +88,7 @@ function countdown(){
 }
 
 //Funktion lägg till tal
-function addRandomNumber(calcMethod){
+function addRandomNumber(){
   //genererar random siffror
   x = Math.floor(Math.random() * 11);
   y = Math.floor(Math.random() * 11);
@@ -106,7 +106,7 @@ function addRandomNumber(calcMethod){
   } 
   //vid delat returnera gångertal
   else if (calcMethod ==="division"){
-    return randomAdd = (`${x*y} / ${y}`)
+    return randomAdd = (`${x*y} / ${y}`);
   }
 }
 
@@ -136,7 +136,7 @@ function methodChange() {
 
 //funktion som lägger till talet
 function addCalcToDOM() {
-  addRandomNumber(calcMethod)
+  addRandomNumber()
   calc.innerHTML = randomAdd;
 }
 
