@@ -18,7 +18,7 @@ let randomAdd;
 let time = 20;
 let score = 0;
 let calcMethod = "";
-let timeInterval
+let timeInterval;
 let insertedNumber;
 
 //Hämtar värde till val av räknesätt
@@ -48,7 +48,7 @@ number.addEventListener("input", (event) => {
     ((calcMethod === "division") && ((parseFloat(insertedNumber)) === ((x*y) / y)))
   ) {
     //Nytt tal
-    addCalcToDOM();
+    addCalcToDOM(calcMethod);
     //Uppdatera poäng
     updateScore();
     //töm input
@@ -65,7 +65,7 @@ function startTime() {
   //startknapp blir disabled
   startBtn.disabled = true
   //lägg till tal
-  addCalcToDOM()
+  addCalcToDOM(calcMethod)
   //fokus på input
   number.focus();
   //bestämmer nedräkning
@@ -88,24 +88,25 @@ function countdown(){
 }
 
 //Funktion lägg till tal
-function addRandomNumber(){
+function addRandomNumber(calcMethod){
   //genererar random siffror
   x = Math.floor(Math.random() * 11);
   y = Math.floor(Math.random() * 11);
   //vid addition returnera plus-tal
   if (calcMethod === "addition") {
-    return randomAdd = (`${x} + ${y}`);
+    return randomAdd = (`${x} + ${y}`)
   }
   //vid subtraktion och x högre siffra än y returnera minus-tal
-  else if ((calcMethod === "subtraction") && (x >= y)) 
-  {return randomAdd = (`${x} - ${y}`);}
+  else if ((calcMethod === "subtraction") && (x >= y)) {
+    return randomAdd = (`${x} - ${y}`)
+  }
   //vid multiplikation returnera gånger-tal
   else if (calcMethod === "multiplication") {
-    return randomAdd = (`${x} x ${y}`);
+    return randomAdd = (`${x} x ${y}`)
   } 
   //vid delat returnera gångertal
   else if (calcMethod ==="division"){
-    return randomAdd = (`${x*y} / ${y}`);
+    return randomAdd = (`${x*y} / ${y}`)
   }
 }
 
@@ -113,24 +114,29 @@ function addRandomNumber(){
 function methodChange() {
   if (calcMethod === "addition") {
     method.innerHTML = "Addition"
+    startBtn.disabled = false
   }
   else if (calcMethod === "subtraction") {
     method.innerHTML = "Subtraktion"
+    startBtn.disabled = false
   }
   else if (calcMethod === "multiplication") {
     method.innerHTML = "Multiplikation"
+    startBtn.disabled = false
   } 
   else if (calcMethod === "division"){
     method.innerHTML = "Division"
+    startBtn.disabled = false
   }
   else {
     method.innerHTML = "Välj räknesätt"
+    startBtn.disabled = true
   }
 }
 
 //funktion som lägger till talet
 function addCalcToDOM() {
-  addRandomNumber()
+  addRandomNumber(calcMethod)
   calc.innerHTML = randomAdd;
 }
 
