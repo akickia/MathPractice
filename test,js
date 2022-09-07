@@ -1,0 +1,226 @@
+//VARIABLER
+//Hämtade från html
+const calc = document.getElementById("calc");
+const number = document.getElementById("number");
+const scoreEl = document.getElementById("score");
+const timeEl = document.getElementById("time");
+const endgameEl = document.getElementById("end-game-container");
+const select = document.getElementById("select");
+const selectForm = document.getElementById("select-form");
+const calcMethodSelect = document.getElementById("calcMethod");
+const startBtn = document.getElementById("start");
+const method = document.getElementById("method")
+
+//variabler till funktioner
+
+let randomAdd;
+let time = 30;
+let score = 0;
+let calcMethod = "";
+let timeInterval;
+let insertedNumber;
+
+//Hämtar värde till val av räknesätt
+calcMethodSelect.value = "calcMethod" 
+
+//startar funktion för att kunna ändra räknesätt
+methodChange()
+
+
+//Startar utmaningen genom funktionen startTime vid klick på startknapp
+startBtn.addEventListener("click", function() {
+  if (calcMethod === "addition") {
+    startTime()
+    addAddition()
+  }})
+
+number.addEventListener("input", (event) => {
+    (insertedNumber) = event.target.value;
+    if ((parseFloat(insertedNumber)) === (x + y))
+    {
+      updateScore();
+      addAddition();
+      number.focus();
+      event.target.value = ""
+    }})
+
+  
+  
+  
+  const x = Math.floor(Math.random() * 11);
+const y = Math.floor(Math.random() * 11);
+
+//Funktioner för att lägga till tal. 
+
+function addAddition () {
+  randomAdd = (`${x} + ${y}`)  
+  calc.innerHTML = randomAdd;
+}
+
+const addSubtraction =() => {
+  x >= y 
+  randomAdd = (`${x} - ${y}`)
+}
+
+const addMultiplication = () => {
+  randomAdd = (`${x} x ${y}`)
+}
+
+const addDivision =() => {
+  x >= 1
+  randomAdd = (`${x*y} / ${y}`);
+}
+
+  
+  
+  
+
+//Välja räknesätt
+selectForm.addEventListener("change", (event) => {calcMethod = event.target.value; methodChange();})
+
+
+//vid input sparas svaret till variabeln insertedNumber
+
+  //om något av följande
+  
+    if (calcMethod === "addition") {
+      additionCalc();
+     
+    }
+    else if (calcMethod === "subtraction") {
+      stubtractionCalc()
+    } 
+    else if (calcMethod === "multiplication") {
+      multiplicationCalc()
+    }
+    else if (calcMethod === "division") {
+      divisionCalc()
+    }
+    else { event.target.value = "";}
+  
+  
+function rightAnswer () {
+  addCalcToDOM();
+  //Uppdatera poäng
+  updateScore();
+  //töm input
+  number.focus();    
+}
+//Bryta ut till enskilda funktioner för varje räknesätt. 
+function additionCalc () {
+  if ((parseFloat(insertedNumber)) === (x + y))
+  {rightAnswer()
+  }
+}
+
+function stubtractionCalc () {
+  if ((parseFloat(insertedNumber)) === (x - y))
+  {rightAnswer()}
+}
+
+function multiplicationCalc () {
+  if ((parseFloat(insertedNumber)) === (x * y))
+  {rightAnswer()}
+}
+function divisionCalc () {
+  if ((parseFloat(insertedNumber)) === ((x*y) / y))
+  {rightAnswer()}
+}
+
+
+
+
+
+
+//Funktion lägg till tal
+function addRandomNumber(){
+  //genererar random siffror
+
+  //vid addition returnera plus-tal
+  if (calcMethod === "addition") {
+    addAddition()
+  }
+  //vid subtraktion och x högre siffra än y returnera minus-tal
+  else if (calcMethod === "subtraction") {
+    addSubtraction()
+  }
+  //vid multiplikation returnera gånger-tal
+  else if (calcMethod === "multiplication") {
+    addMultiplication()
+  } 
+  //vid delat returnera gångertal
+  else if (calcMethod ==="division"){
+    addDivision()
+  }
+}
+
+//funktion för att rätt text ska visas när användare gör val
+function methodChange() {
+  if (calcMethod === "addition") {
+    method.innerHTML = "Addition"
+    startBtn.disabled = false
+  }
+  else if (calcMethod === "subtraction") {
+    method.innerHTML = "Subtraktion"
+    startBtn.disabled = false
+  }
+  else if (calcMethod === "multiplication") {
+    method.innerHTML = "Multiplikation"
+    startBtn.disabled = false
+  } 
+  else if (calcMethod === "division"){
+    method.innerHTML = "Division"
+    startBtn.disabled = false
+  }
+  else {
+    method.innerHTML = "Välj räknesätt"
+    startBtn.disabled = true
+  }
+}
+
+//funktion som lägger till talet
+function addCalcToDOM() {
+  addRandomNumber()
+  calc.innerHTML = randomAdd;
+}
+
+//funktion som uppdaterar poäng
+function updateScore(){
+  score++;
+  scoreEl.innerHTML = score;
+}
+
+//FUNKTIONER
+//funktion startTime 
+function startTime() {
+  
+  //lägg till tal
+  //addCalcToDOM()
+  //fokus på input
+  number.focus();
+  //bestämmer nedräkning
+  timeInterval = setInterval(countdown, 1000)
+  //startar funktion för nedräkning
+  countdown()
+  //startknapp blir disabled
+  startBtn.disabled = true
+}
+
+//Funktion countdown
+function countdown(){
+  //Räknar ner med -1
+  time--
+  //Visar nedräkningen 
+  timeEl.innerHTML = time + "s";
+  //när tiden blir noll - stoppa tiden och kör funktion gaveOver
+  if (time === 0) {
+    clearInterval(timeInterval);
+    gameOver();
+  }
+}
+
+//funktion som visar end-game-container
+function gameOver() {
+  endgameEl.innerHTML = `<h1>Tiden är slut!</h1><p>Du fick ${score} poäng</p><button onClick="location.reload()">Försök igen</button>`
+  endgameEl.style.display = "flex";
+}

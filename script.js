@@ -87,28 +87,56 @@ function countdown(){
   }
 }
 
+function addSubraction() {
+  do {
+  addNumber()
+  }
+  while (y >= x)
+  return randomAdd = (`${x} - ${y}`);
+}
+
+function addDivision() {
+  do {
+    addNumber()
+    }
+    while (x === 0)
+    return randomAdd = (`${x*y} / ${y}`);
+}
+
+function addNumber() {
+  x = Math.floor(Math.random() * 11);
+  y = Math.floor(Math.random() * 11);
+}
+
 //Funktion lägg till tal
 function addRandomNumber(){
   //genererar random siffror
-  x = Math.floor(Math.random() * 11);
-  y = Math.floor(Math.random() * 11);
+  
   //vid addition returnera plus-tal
-  if (calcMethod === "addition") {
-    return randomAdd = (`${x} + ${y}`)
-  }
-  //vid subtraktion och x högre siffra än y returnera minus-tal
-  else if ((calcMethod === "subtraction") && (x >= y)) {
-    return randomAdd = (`${x} - ${y}`)
-  }
-  //vid multiplikation returnera gånger-tal
-  else if (calcMethod === "multiplication") {
-    return randomAdd = (`${x} x ${y}`)
-  } 
-  //vid delat returnera gångertal
-  else if (calcMethod ==="division"){
-    return randomAdd = (`${x*y} / ${y}`);
-  }
+    if (calcMethod === "addition") {
+      addNumber()
+      return randomAdd = (`${x} + ${y}`)
+    }
+    //vid subtraktion (och x högre siffra än y returnera minus-tal - borttaget)
+    else if ((calcMethod === "subtraction")) {
+      addSubraction()
+    }
+    //vid multiplikation returnera gånger-tal
+    else if (calcMethod === "multiplication") {
+      addNumber()
+      return randomAdd = (`${x} x ${y}`)
+    } 
+    //vid delat returnera gångertal
+    else if (calcMethod ==="division"){
+      addDivision()
+    }
+    else {
+      console.log("fel");
+      return randomAdd = ("Nu blev något fel, ladda om sidan.")
+    }
 }
+
+
 
 //funktion för att rätt text ska visas när användare gör val
 function methodChange() {
