@@ -97,15 +97,20 @@ function addSubraction() {
 
 function addDivision() {
   do {
-    addNumber()
-    }
-    while (x === 0)
+    addDivisionRandom()
+  }
+    while (x == 0)
     return randomAdd = (`${x*y} / ${y}`);
 }
 
 function addNumber() {
   x = Math.floor(Math.random() * 11);
   y = Math.floor(Math.random() * 11);
+}
+
+function addDivisionRandom(){
+  x = Math.floor(Math.random() * 6);
+  y = Math.floor((Math.random() * 6)+1);
 }
 
 //Funktion lägg till tal
@@ -176,6 +181,6 @@ function updateScore(){
 
 //funktion som visar end-game-container
 function gameOver() {
-  endgameEl.innerHTML = `<h1>Tiden är slut!</h1><p>Du fick ${score} poäng</p><button onClick="location.reload()">Försök igen</button>`
+  endgameEl.innerHTML = `<h1>Tiden är slut!</h1><p>Du fick ${score} poäng</p><button class="btn" onClick="location.reload()">Försök igen</button>`
   endgameEl.style.display = "flex";
 }
